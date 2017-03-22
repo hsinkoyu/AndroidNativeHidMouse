@@ -110,6 +110,34 @@ static bool isLeftButtonHold(void) {
     return ret;
 }
 
+static bool zoomInOut(__s32 moveToX, __s32 moveToY) {
+    int i = 0;
+    FingerState *finger1 = NULL, *finger2 = NULL;
+
+    /* Find the first two fingers on TP_TOUCH area. */
+    for (i = 0; i < MT_NUMBER_OF_SLOTS; i++) {
+        if (gFingers[i].mt_tracking_id != -1 && gFingers[i].initPosArea == TP_TOUCH) {
+            if (finger1 == NULL) {
+                finger1 = &gFingers[i];
+            } else {
+                finger2 = &gFingers[i];
+                break;
+            }
+        }
+    }
+
+    if (finger1 != NULL && finger2 != NULL && (gWorkingFinger == finger1 || gWorkingFinger == finger2)) {
+        double oldDistance = pow(finger1->mt_position_x - finger2->mt_position_x, 2) + pow(finger1->mt_position_y - finger2->mt_position_y, 2);
+        double newDistance = (gWorkingFinger == finger1) ? pow(finger2->mt_position_x - moveToX, 2) + pow(finger2->mt_position_y - moveToY, 2) : 
+                                                           pow(finger1->mt_position_x - moveToX, 2) + pow(finger1->mt_position_y - moveToY, 2);
+        // TODO: send zoom in/out report
+
+        return true;
+    }
+
+    return false;
+}
+
 static void sendTouchHoldReport(void) {
     char report[3] = {0x01, 0, 0};
 
