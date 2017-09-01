@@ -1,7 +1,7 @@
 /*
- * android_hid_mouse_test.c - Test application of Android Native HID Mouse
+ * android_hid_mouse_test.c - Test application for Android Native HID Mouse
  *
- * Copyright (C) 2014 Hsinko Yu <hsinkoyu@gmail.com>
+ * Copyright (c) 2014 Hsinko Yu <hsinkoyu@gmail.com>
  *
  * This file is released under the GPLv2
  *
