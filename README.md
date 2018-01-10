@@ -8,13 +8,15 @@ Android speaks native USB HID mouse.
 
 Connect the Android phone to the computer via USB and the phone acts
 as a touchpad device. The phone speaks native USB HID mouse interface.
-The computer sees an HID-compliant mouse plug in.
+The computer sees an HID-compliant mouse plug in. No driver needs to
+be installed on the computer and no apk needs to be installed on the
+phone.
 
 The test program android_hid_mouse_test has following functions.
 
                  720
     +--------------------+------+
-    |                    | [C]	|
+    |                    | [C]  |
     |                    +------+
     |                           |
     |                           |
